@@ -1,19 +1,17 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
 struct node{
-	T dado;
+	char dado;
 	struct node* prox;
 };
 
-template <typename T>
-void adc_elemento(struct node **apontador, T elemento){
+void adc_elemento(struct node **apontador, char elemento){
 	if (*apontador == NULL){
 		struct node *temp = *apontador;
 		*apontador = new struct node;
-		*apontador->prox = temp;
-		*apontador->dado = elemento; 
+		(*apontador)->prox = temp;
+		(*apontador)->dado = elemento; 
 	} else{
 		struct node *temp = *apontador;
 		
@@ -24,19 +22,16 @@ void adc_elemento(struct node **apontador, T elemento){
 		temp->prox = new struct node;
 		temp->prox->prox = NULL;
 		temp->prox->dado = elemento;
-	}
-
-	
+	}	
 }
 
-template <typename T>
 void mos_lista(struct node *apontador){
 	if (apontador == NULL){
 		cout << "Vazio" << endl;
 	} else{
 		struct node *temp = apontador; 
 		cout << temp->dado << endl;
-
+		
 		while (temp->prox != NULL){
 			cout << temp->dado << endl;
 			temp = temp->prox;
@@ -45,22 +40,20 @@ void mos_lista(struct node *apontador){
 	}
 }
 
-template <typename T>
 void rem_elemento(struct node **apontador){
 	if (*apontador != NULL){
 		struct node *temp = *apontador;
-		*apontador = *apontador->prox;
+		*apontador = (*apontador)->prox;
 		delete temp;
 	}
 	
 	cout << "Primeiro elemento removido" << endl;
 }
 
-template <typename T>
 int main (){
 	struct node *lista;
 	lista = NULL;
-	T entrada;
+	char entrada;
 	int loop = 1; 
 	int resposta;
 
